@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 export default function Home() {
-  const [id, setId] = useState('luiz-felipe-lazzaron-682676181');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passowrdRepeated, setPasswordRepeated] = useState('');
+  const [id, setId] = useState('');
   const [data, setData] = useState({});
-
-  console.log('id:', id);
 
   function handleChange(value) {
     setId(value.target.value);
@@ -36,45 +37,46 @@ export default function Home() {
       <div className='row'>
         <div className='col'>
           <p className='text-center'>Registration</p>
-          <form>
+          <form action='/' method='post'>
             <div className='form-group'>
               <label>E-mail</label>
               <input
                 type='email'
                 className='form-control'
-                onChange={handleChange}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               <label>Senha</label>
               <input
                 type='password'
                 className='form-control'
-                onChange={handleChange}
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               <label>Confirme a Senha</label>
               <input
                 type='password'
                 className='form-control'
-                onChange={handleChange}
+                onChange={(e) => setPasswordRepeated(e.target.value)}
               />
               <label>LinkedIn Id</label>
               <input
                 type='text'
                 className='form-control'
-                onChange={handleChange}
+                onChange={(e) => setId(e.target.value)}
               />
               <small className='form-text text-muted'>
                 Um exemplo seria <strong>luiz-felipe-lazzaron-682676181</strong>
                 . Podemos usar regex para o usuário por seu <strong>url</strong>
               </small>
             </div>
-            <button
-              // onClick={getData()}
-              className='btn btn-primary'
-            >
-              Register
-            </button>
+            <p>
+              <input
+                className='btn btn-primary'
+                type='submit'
+                value='Register'
+              />
+            </p>
           </form>
         </div>
         <div className='col'>
@@ -85,14 +87,14 @@ export default function Home() {
               <input
                 type='email'
                 className='form-control'
-                onChange={handleChange}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               <label>Senha</label>
               <input
                 type='password'
                 className='form-control'
-                onChange={handleChange}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <button
