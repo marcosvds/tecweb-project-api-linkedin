@@ -1,10 +1,13 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/projetoNEMHandout');
+var mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost:27017/linkedinApi");
 
-var userSchema = new mongoose.Schema({
-    username: String,
-     email: String
-     }, { collection: 'usercollection' }
-     );
-    
- module.exports = { Mongoose: mongoose, UserSchema: userSchema }
+var userSchema = new mongoose.Schema(
+  {
+    email: String,
+    password: String,
+    idLinkedin: String,
+  },
+  { collection: "register" }
+);
+
+module.exports = { Mongoose: mongoose, UserSchema: userSchema };

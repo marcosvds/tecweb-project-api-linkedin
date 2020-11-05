@@ -3,17 +3,13 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express" });
+  res.render("index", { title: "Linkedin-Api by Insper" });
 });
 
 /* GET Userlist page. */
 router.get("/userlist", function (req, res) {
   var db = require("../db");
-  var Users = db.Mongoose.model(
-    "usercollection",
-    db.UserSchema,
-    "usercollection"
-  );
+  var Users = db.Mongoose.model("register", db.UserSchema, "register");
   Users.find({})
     .lean()
     .exec(function (e, docs) {
@@ -31,21 +27,23 @@ router.get("/newuser", function (req, res) {
 /* POST to Add User Service */
 router.post("/adduser", function (req, res) {
   var db = require("../db");
-  var userName = req.body.username;
-  var userEmail = req.body.useremail;
-  var Users = db.Mongoose.model(
-    "usercollection",
-    db.UserSchema,
-    "usercollection"
-  );
-  var user = new Users({ username: userName, email: userEmail });
+  var userEmail = req.body.email;
+  var userPassword = req.body.password;
+  var userIdLinkedin = req.body.idLinkedin;
+  var Users = db.Mongoose.model("register", db.UserSchema, "register");
+  console.log(userEmail, userPassword, userIdLinkedin);
+  var user = new Users({
+    email: userEmail,
+    password: userPassword,
+    idLinkedin: userIdLinkedin,
+  });
   user.save(function (err) {
     if (err) {
       console.log("Error! " + err.message);
       return err;
     } else {
       console.log("Post saved");
-      res.redirect("userlist");
+      res.redirect("/");
     }
   });
 });

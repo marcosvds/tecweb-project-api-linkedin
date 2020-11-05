@@ -7,5 +7,13 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <form action="/adduser" method="post">
+      <p>Email:<input type="text" name="email" /></p>
+      <p>Password:<input type="text" name="password" /></p>
+      <p><input type="submit" value="Login" /></p>
+    </form>
+    <form action="/newuser" method="get">
+      <p><input type="submit" value="Cadastrar" /></p>
+    </form>
   </body>
 </html>
