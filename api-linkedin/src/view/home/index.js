@@ -4,11 +4,11 @@ export default function Home() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passowrdRepeated, setPasswordRepeated] = useState('');
-  const [id, setId] = useState('');
+  const [linkedinId, setLinkedinId] = useState('');
   const [data, setData] = useState({});
 
   function handleChange(value) {
-    setId(value.target.value);
+    setLinkedinId(value.target.value);
   }
 
   async function getData() {
@@ -17,7 +17,7 @@ export default function Home() {
     var req = unirest('GET', 'https://rapidapi.p.rapidapi.com/rapidapi/');
 
     req.query({
-      profileId: id,
+      profileId: linkedinId,
     });
 
     req.headers({
@@ -63,7 +63,7 @@ export default function Home() {
               <input
                 type='text'
                 className='form-control'
-                onChange={(e) => setId(e.target.value)}
+                onChange={(e) => setLinkedinId(e.target.value)}
               />
               <small className='form-text text-muted'>
                 Um exemplo seria <strong>luiz-felipe-lazzaron-682676181</strong>
