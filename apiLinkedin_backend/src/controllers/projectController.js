@@ -18,7 +18,11 @@ router.get("/", async (req, res) => {
   const data = await Data.findOne({ linkedinId });
   console.log(data);
 
-  res.send({ user });
+  res.send({
+    firstName: data.firstName,
+    lastName: data.lastName,
+    birthDate: data.birthDate,
+  });
 });
 // });
 
