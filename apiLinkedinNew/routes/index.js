@@ -7,15 +7,21 @@ router.get("/", function (req, res, next) {
 });
 
 /* GET Userlist page. */
-router.get("/userlist", function (req, res) {
+router.get("/user", function (req, res) {
   var db = require("../db");
+  var userEmail = req.body.email;
+  var userPassword = req.body.password;
   var Users = db.Mongoose.model("register", db.UserSchema, "register");
-  Users.find({})
+  Users.find({ email: userEmail, password: userPassword })
     .lean()
     .exec(function (e, docs) {
-      // res.render('userlist', { "userlist": docs });
-      // res.json(docs);
-      res.status("200").json(docs);
+      if (docs) {
+        res.render("userlist", { userlist: docs });
+        res.json(docs);
+        //res.status("200").json(docs);
+      } else {
+        res.redirect("/");
+      }
     });
 });
 
