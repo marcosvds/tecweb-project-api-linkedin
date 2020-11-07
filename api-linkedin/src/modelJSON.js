@@ -284,7 +284,7 @@ const phil = {
       volunteer_experiences: [], //volunteer_experiences
       skills: [
         //skills
-        'Projetos ',
+        'Projetos',
         'Liderança',
         'Oratória',
         'Gestão de projetos',

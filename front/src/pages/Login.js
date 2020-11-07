@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useRef } from 'react';
+import { Context } from '../Context/AuthContext';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const email = useRef('');
+  const password = useRef('');
+  const { authenticated, handleLogin, handleLogout } = useContext(Context);
 
   return (
     <div className='container p-3'>
@@ -15,17 +17,23 @@ export default function Login() {
               <input
                 type='email'
                 className='form-control'
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => (email.current = e.target.value)}
               />
 
               <label>Senha</label>
               <input
                 type='password'
                 className='form-control'
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => (password.current = e.target.value)}
               />
             </div>
-            <button className='btn btn-primary' type='button'>
+            <button
+              className='btn btn-primary'
+              type='button'
+              onClick={() => {
+                handleLogin(email.current, password.current);
+              }}
+            >
               Enter
             </button>
           </form>

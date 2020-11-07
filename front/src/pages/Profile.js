@@ -5,6 +5,7 @@ export default function Profile() {
     profile: {
       first_name: 'Luiz Felipe',
       last_name: 'Lazzaron',
+      industry: 'Staffing & Recruiting',
       birth_date: null,
       profile_picture:
         'https://media-exp1.licdn.com/dms/image/C4E03AQEBDvzstEKE1A/profile-displayphoto-shrink_400_400/0?e=1609977600&v=beta&t=68YYDI8uknk1N2fJfO00339j3NOdUmyi5NZjQH4Wexs',
@@ -95,6 +96,14 @@ export default function Profile() {
             </div>
             <div>
               <span>{data.profile.influencer ? 'Sim' : 'Não'}</span>
+            </div>
+          </div>
+          <div className='p-2 d-flex flex-row justify-content-center'>
+            <div>
+              <strong className='pr-4'>Industry</strong>
+            </div>
+            <div>
+              <span>{data.industry}</span>
             </div>
           </div>
         </div>
