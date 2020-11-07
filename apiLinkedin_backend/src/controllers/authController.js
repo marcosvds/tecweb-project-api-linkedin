@@ -68,25 +68,35 @@ router.post("/authenticate", async (req, res) => {
     const birthDate = resUni.body.data.data.birth_date;
     const profilePicture = resUni.body.data.data.profile_picture;
     const summary = resUni.body.data.data.summary;
-    const locationCountry = resUni.body.data.data.location.country;
+    const location = resUni.body.data.data.location;
     const premium = resUni.body.data.data.premium;
     const influencer = resUni.body.data.data.influencer;
+    const treasuryMedia = resUni.body.data.data.treasury_media;
+    const languages = resUni.body.data.data.languages;
+    const industry = resUni.body.data.data.industry;
+    const education = resUni.body.data.data.education;
+    const patents = resUni.body.data.data.patents;
+    const certifications = resUni.body.data.data.certifications;
 
-    const data = await Data.updateMany({
+    await Data.updateMany({
       firstName,
       lastName,
       birthDate,
       profilePicture,
       summary,
-      locationCountry,
-      premium, 
-      influencer
+      location,
+      premium,
+      influencer,
+      treasuryMedia,
+      languages,
+      industry,
+      education,
+      patents,
+      certifications,
     });
 
     res.send({
-      user,
       token: generateToken({ id: user.id }),
-      data,
     });
   });
 });
