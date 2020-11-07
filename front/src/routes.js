@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Location from './pages/Location';
 import Language from './pages/Language';
+import PositionGroups from './pages/PositionGroups';
 
 export default function Routes() {
   return (
@@ -15,6 +16,7 @@ export default function Routes() {
       <Route exact path='/profile' component={Profile} />
       <Route exact path='/location' component={Location} />
       <Route exact path='/language' component={Language} />
+      <Route exact path='/positiongroups' component={PositionGroups} />
     </Switch>
   );
 }

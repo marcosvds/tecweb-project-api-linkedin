@@ -68,7 +68,7 @@ export default function Home() {
             Location
           </button>
         </div>
-        <div className='p-3'>
+        {/* <div className='p-3'>
           <label className='mr-4'>To acess treasury media:</label>
           <button
             style={style.button}
@@ -77,7 +77,7 @@ export default function Home() {
           >
             Treasury Media
           </button>
-        </div>
+        </div> */}
         <div className='p-3'>
           <label className='mr-4'>To see your languages: </label>
           <button
@@ -86,6 +86,18 @@ export default function Home() {
             type='button'
           >
             Languages
+          </button>
+        </div>
+        <div className='p-3'>
+          <label className='mr-4'>
+            To acess your professional experiences:
+          </label>
+          <button
+            style={style.button}
+            className='btn btn-primary'
+            type='button'
+          >
+            EXPERIENCES
           </button>
         </div>
       </div>
