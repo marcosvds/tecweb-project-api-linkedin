@@ -64,8 +64,24 @@ router.post("/authenticate", async (req, res) => {
     if (resUni.error) res.status(400).send({ error: "Linkedin Api Error" });
 
     const firstName = resUni.body.data.data.first_name;
+    const lastName = resUni.body.data.data.last_name;
+    const birthDate = resUni.body.data.data.birth_date;
+    const profilePicture = resUni.body.data.data.profile_picture;
+    const summary = resUni.body.data.data.summary;
+    const locationCountry = resUni.body.data.data.location.country;
+    const premium = resUni.body.data.data.premium;
+    const influencer = resUni.body.data.data.influencer;
 
-    const data = await Data.updateMany({ firstName });
+    const data = await Data.updateMany({
+      firstName,
+      lastName,
+      birthDate,
+      profilePicture,
+      summary,
+      locationCountry,
+      premium, 
+      influencer
+    });
 
     res.send({
       user,

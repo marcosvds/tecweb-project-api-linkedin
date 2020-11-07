@@ -8,6 +8,8 @@ const DataSchema = new mongoose.Schema({
   profilePicture: { type: String, required: false },
   summary: { type: String, required: false },
   locationCountry: { type: String, required: false },
+  premium: {type: Boolean, required: false},
+  influencer: {type: Boolean, required: false}
 });
 
 DataSchema.pre("save", async function (next) {
