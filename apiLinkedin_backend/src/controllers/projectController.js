@@ -2,32 +2,24 @@ const express = require("express");
 const unirest = require("unirest");
 const authMiddleware = require("../middlewares/auth");
 
+const User = require("../models/User");
+const Data = require("../models/Data");
 const router = express.Router();
 
 router.use(authMiddleware);
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+  const _id = req.userId;
 
-  var reqUni = unirest(
-    "GET",
-    "https://linkedin-public-profiles.p.rapidapi.com/rapidapi/"
-  );
+  const user = await User.findOne({ _id });
 
-  reqUni.query({
-    profileId: "williamhgates",
-  });
+  const linkedinId = user.linkedinId;
 
-  reqUni.headers({
-    "x-rapidapi-host": "linkedin-public-profiles.p.rapidapi.com",
-    "x-rapidapi-key": "8085288af8msh2c14499e1cabd8ep1157f6jsn9d120e529dc6",
-    useQueryString: true,
-  });
+  const data = await Data.findOne({ linkedinId });
+  console.log(data);
 
-  reqUni.end(function (resUni) {
-    if (resUni.error) res.status(400).send({ error: "Linkedin Api Error" });
-
-    res.send({ data: resUni.body, user: req.userId });
-  });
+  res.send({ user });
 });
+// });
 
 module.exports = (app) => app.use("/projects", router);
