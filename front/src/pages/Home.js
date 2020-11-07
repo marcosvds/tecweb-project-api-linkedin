@@ -44,11 +44,11 @@ export default function Home() {
           </p>
         </div>
         <div>
-          <p className='h3'>Olá, user</p>
+          <p className='h3'>Hello, user</p>
         </div>
-        <div>
+        <div className='p-3'>
           <label className='mr-4'>
-            Para acessar a foto, o nome, data de nascimento e tipo de perfil:
+            To see your photo, name, birth and summary:
           </label>
           <button
             style={style.button}
@@ -58,14 +58,34 @@ export default function Home() {
             Profile
           </button>
         </div>
-        <div>
-          <label className='mr-4'>Para acessar localização:</label>
+        <div className='p-3'>
+          <label className='mr-4'>To acess location:</label>
           <button
             style={style.button}
             className='btn btn-primary'
             type='button'
           >
             Location
+          </button>
+        </div>
+        <div className='p-3'>
+          <label className='mr-4'>To acess treasury media:</label>
+          <button
+            style={style.button}
+            className='btn btn-primary'
+            type='button'
+          >
+            Treasury Media
+          </button>
+        </div>
+        <div className='p-3'>
+          <label className='mr-4'>To see your languages: </label>
+          <button
+            style={style.button}
+            className='btn btn-primary'
+            type='button'
+          >
+            Languages
           </button>
         </div>
       </div>
