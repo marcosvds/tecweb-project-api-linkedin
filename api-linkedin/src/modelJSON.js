@@ -1,96 +1,96 @@
-const bill = {
-  data: {
-    meta: { status: 200, profileId: 'williamhgates', credits_left: 8251002 },
-    data: {
-      first_name: 'Bill',
-      last_name: 'Gates',
-      birth_date: null,
-      profile_picture:
-        'https://media-exp1.licdn.com/dms/image/C5603AQHv9IK9Ts0dFA/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=-bmpV3UoMzWCD6zIURdjrdne4yexxDGiMC7XnCzM2tY',
-      summary:
-        'Co-chair of the Bill & Melinda Gates Foundation. Microsoft Co-founder. Voracious reader. Avid traveler. Active blogger.',
-      location: {
-        country: 'United States',
-        short: 'Seattle, Washington',
-        default: 'Seattle, Washington, United States',
-      },
-      premium: true,
-      influencer: true,
-      treasury_media: [],
-      languages: {
-        primary_locale: { country: 'US', language: 'en' },
-        supported_locales: [{ country: 'US', language: 'en' }],
-        profile_languages: [],
-      },
-      industry: 'Philanthropy',
-      education: [
-        {
-          date: { start: { year: 1973 }, end: { year: 1975 } },
-          school: {
-            name: 'Harvard University',
-            logo:
-              'https://media-exp1.licdn.com/dms/image/C4E0BAQF5t62bcL0e9g/company-logo_400_400/0?e=1611792000&v=beta&t=0wq7i61oE7eAlEsqrgUcy3hfc-zcT3eu2jbS1ZEpu7g',
-          },
-          degree_name: null,
-          field_of_study: null,
-        },
-        {
-          date: null,
-          school: { name: 'Lakeside School, Seattle', logo: null },
-          degree_name: null,
-          field_of_study: null,
-        },
-      ],
-      patents: [],
-      certifications: [],
-      projects: [],
-      publications: [],
-      courses: [],
-      test_scores: [],
-      position_groups: [
-        {
-          company: {
-            name: 'Bill & Melinda Gates Foundation',
-            logo:
-              'https://media-exp1.licdn.com/dms/image/C4D0BAQGiKIHTOo_V7Q/company-logo_400_400/0?e=1611792000&v=beta&t=Jv28hdE-mcaNpkXR4S0hk0ZyHXw_BqNBnFQc04rVL6E',
-            url:
-              'https://www.linkedin.com/company/bill-&-melinda-gates-foundation/',
-            employees: { start: 1001, end: 5000 },
-          },
-          date: { start: { year: 2000 } },
-          profile_positions: [
-            {
-              location: null,
-              date: { start: { year: 2000 } },
-              company: 'Bill & Melinda Gates Foundation',
-              title: 'Co-chair',
-            },
-          ],
-        },
-        {
-          company: {
-            name: 'Microsoft',
-            logo:
-              'https://media-exp1.licdn.com/dms/image/C4D0BAQEko6uLz7XylA/company-logo_400_400/0?e=1611792000&v=beta&t=AfMarzbE4LQDy1g9IdyC07iNYJjH9OkQ06VJ8-HWaic',
-            url: 'https://www.linkedin.com/company/microsoft/',
-            employees: { start: 10001, end: null },
-          },
-          date: { start: { year: 1975 } },
-          profile_positions: [
-            {
-              location: null,
-              date: { start: { year: 1975 } },
-              company: 'Microsoft',
-              title: 'Co-founder',
-            },
-          ],
-        },
-      ],
-      volunteer_experiences: [],
-      skills: [],
-    },
-  },
-};
+// const bill = {
+//   data: {
+//     meta: { status: 200, profileId: 'williamhgates', credits_left: 8251002 },
+//     data: {
+//       first_name: 'Bill',
+//       last_name: 'Gates',
+//       birth_date: null,
+//       profile_picture:
+//         'https://media-exp1.licdn.com/dms/image/C5603AQHv9IK9Ts0dFA/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=-bmpV3UoMzWCD6zIURdjrdne4yexxDGiMC7XnCzM2tY',
+//       summary:
+//         'Co-chair of the Bill & Melinda Gates Foundation. Microsoft Co-founder. Voracious reader. Avid traveler. Active blogger.',
+//       location: {
+//         country: 'United States',
+//         short: 'Seattle, Washington',
+//         default: 'Seattle, Washington, United States',
+//       },
+//       premium: true,
+//       influencer: true,
+//       treasury_media: [],
+//       languages: {
+//         primary_locale: { country: 'US', language: 'en' },
+//         supported_locales: [{ country: 'US', language: 'en' }],
+//         profile_languages: [],
+//       },
+//       industry: 'Philanthropy',
+//       education: [
+//         {
+//           date: { start: { year: 1973 }, end: { year: 1975 } },
+//           school: {
+//             name: 'Harvard University',
+//             logo:
+//               'https://media-exp1.licdn.com/dms/image/C4E0BAQF5t62bcL0e9g/company-logo_400_400/0?e=1611792000&v=beta&t=0wq7i61oE7eAlEsqrgUcy3hfc-zcT3eu2jbS1ZEpu7g',
+//           },
+//           degree_name: null,
+//           field_of_study: null,
+//         },
+//         {
+//           date: null,
+//           school: { name: 'Lakeside School, Seattle', logo: null },
+//           degree_name: null,
+//           field_of_study: null,
+//         },
+//       ],
+//       patents: [],
+//       certifications: [],
+//       projects: [],
+//       publications: [],
+//       courses: [],
+//       test_scores: [],
+//       position_groups: [
+//         {
+//           company: {
+//             name: 'Bill & Melinda Gates Foundation',
+//             logo:
+//               'https://media-exp1.licdn.com/dms/image/C4D0BAQGiKIHTOo_V7Q/company-logo_400_400/0?e=1611792000&v=beta&t=Jv28hdE-mcaNpkXR4S0hk0ZyHXw_BqNBnFQc04rVL6E',
+//             url:
+//               'https://www.linkedin.com/company/bill-&-melinda-gates-foundation/',
+//             employees: { start: 1001, end: 5000 },
+//           },
+//           date: { start: { year: 2000 } },
+//           profile_positions: [
+//             {
+//               location: null,
+//               date: { start: { year: 2000 } },
+//               company: 'Bill & Melinda Gates Foundation',
+//               title: 'Co-chair',
+//             },
+//           ],
+//         },
+//         {
+//           company: {
+//             name: 'Microsoft',
+//             logo:
+//               'https://media-exp1.licdn.com/dms/image/C4D0BAQEko6uLz7XylA/company-logo_400_400/0?e=1611792000&v=beta&t=AfMarzbE4LQDy1g9IdyC07iNYJjH9OkQ06VJ8-HWaic',
+//             url: 'https://www.linkedin.com/company/microsoft/',
+//             employees: { start: 10001, end: null },
+//           },
+//           date: { start: { year: 1975 } },
+//           profile_positions: [
+//             {
+//               location: null,
+//               date: { start: { year: 1975 } },
+//               company: 'Microsoft',
+//               title: 'Co-founder',
+//             },
+//           ],
+//         },
+//       ],
+//       volunteer_experiences: [],
+//       skills: [],
+//     },
+//   },
+// };
 
 const phil = {
   data: {
@@ -100,28 +100,33 @@ const phil = {
       credits_left: 8250999,
     },
     data: {
-      first_name: 'Luiz Felipe',
-      last_name: 'Lazzaron',
-      birth_date: null,
+      first_name: 'Luiz Felipe', //perfil
+      last_name: 'Lazzaron', //perfil
+      birth_date: null, //perfil
+      //perfil
       profile_picture:
         'https://media-exp1.licdn.com/dms/image/C4E03AQEBDvzstEKE1A/profile-displayphoto-shrink_400_400/0?e=1609977600&v=beta&t=68YYDI8uknk1N2fJfO00339j3NOdUmyi5NZjQH4Wexs',
+      //perfil
       summary:
         'Um dos fundadores da Preparo. Sou apaixonado por Engenharia, Design e Empreendedorismo. Meu sonho é ajudar e possibilitar os jovens a conquistarem a carreira e profissão que tanto sonham.',
       location: {
+        //location
         country: 'Brazil',
         short: 'São Paulo, São Paulo',
         default: 'São Paulo, São Paulo, Brazil',
       },
-      premium: false,
-      influencer: false,
-      treasury_media: [],
+      premium: false, //perfil
+      influencer: false, //perfil
+      treasury_media: [], //treasury_media
       languages: {
+        //languages
         primary_locale: { country: 'BR', language: 'pt' },
         supported_locales: [{ country: 'BR', language: 'pt' }],
         profile_languages: [],
       },
       industry: 'Staffing & Recruiting',
       education: [
+        //education
         {
           date: { start: { year: 2019 }, end: { year: 2023 } },
           school: {
@@ -159,13 +164,14 @@ const phil = {
           field_of_study: 'Mecânica',
         },
       ],
-      patents: [],
-      certifications: [],
-      projects: [],
-      publications: [],
-      courses: [],
-      test_scores: [],
+      patents: [], //patents
+      certifications: [], //certifications
+      projects: [], //projects
+      publications: [], //publications
+      courses: [], //courses
+      test_scores: [], //test_scores
       position_groups: [
+        //position_groups
         {
           company: {
             name: 'Talus Insper',
@@ -275,8 +281,9 @@ const phil = {
           ],
         },
       ],
-      volunteer_experiences: [],
+      volunteer_experiences: [], //volunteer_experiences
       skills: [
+        //skills
         'Projetos ',
         'Liderança',
         'Oratória',
