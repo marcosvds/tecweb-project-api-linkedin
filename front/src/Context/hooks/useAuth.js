@@ -1,40 +1,56 @@
-import { useState, useEffect } from 'react';
-import api from '../../api';
-import history from '../../history';
+import { useState, useEffect, useRef } from "react";
+import api from "../../api";
+import history from "../../history";
 
 export default function useAuth() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const data = useRef({});
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
-      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+      api.defaults.headers.Authorization = `Bearer ${token}`;
       setAuthenticated(true);
     }
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   async function handleLogin(email, password) {
-    const { data } = await api.post('/auth/authenticate', {
+    data.current = await api.post("/auth/authenticate", {
       email,
       password,
     });
-    api.defaults.headers.Authorization = `Bearer ${JSON.stringify(data.token)}`;
+    api.defaults.headers.Authorization = `Bearer ${data.token}`;
 
-    localStorage.setItem('token', JSON.stringify(data.token));
+    localStorage.setItem("token", data.token);
     setAuthenticated(true);
-    history.push('./home');
+    history.push("/home");
+    window.location.reload(true);
+  }
+
+  async function handleProfile() {
+    data.current = await api.get("/personal/profile");
+    history.push("/personal/profile");
+    window.location.reload(true);
   }
 
   function handleLogout() {
     setAuthenticated(false);
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     api.defaults.headers.Authorization = undefined;
-    history.push('login');
+    history.push("/login");
+    window.location.reload(true);
   }
 
-  return { authenticated, loading, handleLogin, handleLogout };
+  return {
+    authenticated,
+    loading,
+    handleLogin,
+    handleLogout,
+    handleProfile,
+    data,
+  };
 }
