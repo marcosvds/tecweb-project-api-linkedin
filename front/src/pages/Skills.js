@@ -33,8 +33,7 @@ export default function Skills() {
           backgroundColor: "#f1f1f1",
           borderRadius: "0px 0px 20px 0px",
         }}
-        className="container p-3"
-      >
+        className="container p-3">
         <div className="d-flex flex-column">
           <div>
             <a href="/home">back</a>
@@ -46,6 +45,33 @@ export default function Skills() {
             >
               Skills
             </p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div
+        style={{
+          backgroundColor: '#f1f1f1',
+          borderRadius: '0px 20px 20px 0px',
+          marginTop: '2rem',
+        }}
+        className='container p-3'>
+        <div className='d-flex flex-column'>
+          <div className='p-2 d-flex flex-row justify-content-center'>
+            <div>
+              <strong className='pr-4'>Habilidades</strong>
+            </div>
+            <div>
+              {data.skills?.map((item,key)=> {
+                  return(
+                    <div key={key}>
+                        <p>{item}</p>
+                    </div>
+                  )
+                })}
+            </div>
           </div>
         </div>
       </div>
