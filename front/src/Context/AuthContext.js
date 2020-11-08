@@ -15,6 +15,7 @@ function AuthProvider({ children }) {
     handleLanguage,
     handlePositionGroups,
     handleEducation,
+    handleSkills,
   } = useAuth();
 
   return (
@@ -29,6 +30,7 @@ function AuthProvider({ children }) {
         handleLanguage,
         handlePositionGroups,
         handleEducation,
+        handleSkills,
       }}
     >
       {children}
