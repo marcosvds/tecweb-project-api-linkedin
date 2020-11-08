@@ -36,7 +36,7 @@ export default function Location() {
       <div
         style={{
           backgroundColor: '#f1f1f1',
-          borderRadius: '0px 20px 20px 20px',
+          borderRadius: '0px 20px 20px 0px',
           marginTop: '2rem',
         }}
         className='container p-3'
