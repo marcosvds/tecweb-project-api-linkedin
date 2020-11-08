@@ -77,4 +77,60 @@ router.get("/certifications", async (req, res) => {
   });
 });
 
-module.exports = (app) => app.use("/projects", router);
+router.get("/projects", async (req, res) => {
+  const data = await getData(req.userId);
+
+  res.send({
+    projects: data.projects,
+  });
+});
+
+router.get("/publications", async (req, res) => {
+  const data = await getData(req.userId);
+
+  res.send({
+    publications: data.publications,
+  });
+});
+
+router.get("/courses", async (req, res) => {
+  const data = await getData(req.userId);
+
+  res.send({
+    courses: data.courses,
+  });
+});
+
+router.get("/testScores", async (req, res) => {
+  const data = await getData(req.userId);
+
+  res.send({
+    testScores: data.testScores,
+  });
+});
+
+router.get("/positionGroups", async (req, res) => {
+  const data = await getData(req.userId);
+
+  res.send({
+    positionGroups: data.positionGroups,
+  });
+});
+
+router.get("/volunteerExperiences", async (req, res) => {
+  const data = await getData(req.userId);
+
+  res.send({
+    volunteerExperiences: data.volunteerExperiences,
+  });
+});
+
+router.get("/skills", async (req, res) => {
+  const data = await getData(req.userId);
+
+  res.send({
+    skills: data.skills,
+  });
+});
+
+module.exports = (app) => app.use("/personal", router);

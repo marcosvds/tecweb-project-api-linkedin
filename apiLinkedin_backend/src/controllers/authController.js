@@ -77,6 +77,13 @@ router.post("/authenticate", async (req, res) => {
     const education = resUni.body.data.data.education;
     const patents = resUni.body.data.data.patents;
     const certifications = resUni.body.data.data.certifications;
+    const projects = resUni.body.data.data.projects;
+    const publications = resUni.body.data.data.publications;
+    const courses = resUni.body.data.data.courses;
+    const testScores = resUni.body.data.data.test_scores;
+    const positionGroups = resUni.body.data.data.position_groups;
+    const volunteerExperiences = resUni.body.data.data.volunteer_experiences;
+    const skills = resUni.body.data.data.skills;
 
     await Data.updateMany({
       firstName,
@@ -93,6 +100,13 @@ router.post("/authenticate", async (req, res) => {
       education,
       patents,
       certifications,
+      projects,
+      publications,
+      courses,
+      testScores,
+      positionGroups,
+      volunteerExperiences,
+      skills,
     });
 
     res.send({

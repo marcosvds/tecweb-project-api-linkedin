@@ -16,6 +16,13 @@ const DataSchema = new mongoose.Schema({
   education: { type: Array, required: false },
   patents: { type: Array, required: false },
   certifications: { type: Array, required: false },
+  projects: { type: Array, required: false },
+  publications: { type: Array, required: false },
+  courses: { type: Array, required: false },
+  testScores: { type: Array, required: false },
+  positionGroups: { type: Array, required: false },
+  volunteerExperiences: { type: Array, required: false },
+  skills: { type: Array, required: false },
 });
 
 DataSchema.pre("save", async function (next) {
