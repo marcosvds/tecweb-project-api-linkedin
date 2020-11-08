@@ -117,6 +117,24 @@ export default function Home() {
             position groups
           </button>
         </div>
+
+        <div className="p-3">
+          <label className="mr-4">
+            To acess your your skills:
+          </label>
+          <button
+            style={style.button}
+            className="btn btn-primary"
+            type="button"
+            onClick={() => {
+              history.push("/personal/skills");
+              window.location.reload(true);
+            }}
+          >
+            SKILLS
+          </button>
+        </div>
+
       </div>
     </div>
   );

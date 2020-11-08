@@ -48,9 +48,6 @@ export default function Skills() {
           </div>
         </div>
       </div>
-
-
-
       <div
         style={{
           backgroundColor: '#f1f1f1',
@@ -61,7 +58,7 @@ export default function Skills() {
         <div className='d-flex flex-column'>
           <div className='p-2 d-flex flex-row justify-content-center'>
             <div>
-              <strong className='pr-4'>Habilidades</strong>
+              <strong className='pr-4'>Abilitys</strong>
             </div>
             <div>
               {data.skills?.map((item,key)=> {
