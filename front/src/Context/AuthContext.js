@@ -11,7 +11,10 @@ function AuthProvider({ children }) {
     handleLogin,
     handleLogout,
     handleProfile,
-    data,
+    handleLocation,
+    handleLanguage,
+    handlePositionGroups,
+    handleEducation,
   } = useAuth();
 
   return (
@@ -22,7 +25,10 @@ function AuthProvider({ children }) {
         handleLogin,
         handleLogout,
         handleProfile,
-        data,
+        handleLocation,
+        handleLanguage,
+        handlePositionGroups,
+        handleEducation,
       }}
     >
       {children}
