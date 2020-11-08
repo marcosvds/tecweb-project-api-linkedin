@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import api from "../api";
 import { Context } from "../Context/AuthContext";
+import history from "../history";
 
 export default function Home() {
   const [userData, setUserData] = useState([]);
@@ -44,17 +45,20 @@ export default function Home() {
           </p>
         </div>
         <div>
-          <p className="h3">Hello, user</p>
+          <p className="h3">Hello, friend</p>
         </div>
         <div className="p-3">
           <label className="mr-4">
-            To see your photo, name, birth and summary:
+            To see your photo, name, birth, industry and summary:
           </label>
           <button
             style={style.button}
             className="btn btn-primary m-2"
             type="button"
-            onClick={handleProfile}
+            onClick={() => {
+              history.push("/personal/profile");
+              window.location.reload(true);
+            }}
           >
             Profile
           </button>
@@ -65,6 +69,10 @@ export default function Home() {
             style={style.button}
             className="btn btn-primary"
             type="button"
+            onClick={() => {
+              history.push("/personal/location");
+              window.location.reload(true);
+            }}
           >
             Location
           </button>
@@ -85,6 +93,10 @@ export default function Home() {
             style={style.button}
             className="btn btn-primary"
             type="button"
+            onClick={() => {
+              history.push("/personal/languages");
+              window.location.reload(true);
+            }}
           >
             Languages
           </button>
@@ -97,8 +109,12 @@ export default function Home() {
             style={style.button}
             className="btn btn-primary"
             type="button"
+            onClick={() => {
+              history.push("/personal/positiongroups");
+              window.location.reload(true);
+            }}
           >
-            EXPERIENCES
+            position groups
           </button>
         </div>
       </div>

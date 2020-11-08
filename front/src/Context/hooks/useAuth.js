@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import api from "../../api";
 import history from "../../history";
 
 export default function useAuth() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const data = useRef({});
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -19,7 +18,7 @@ export default function useAuth() {
   }, []);
 
   async function handleLogin(email, password) {
-    data.current = await api.post("/auth/authenticate", {
+    const { data } = await api.post("/auth/authenticate", {
       email,
       password,
     });
@@ -27,14 +26,6 @@ export default function useAuth() {
 
     localStorage.setItem("token", data.token);
     setAuthenticated(true);
-    history.push("/home");
-    window.location.reload(true);
-  }
-
-  async function handleProfile() {
-    data.current = await api.get("/personal/profile");
-    history.push("/personal/profile");
-    window.location.reload(true);
   }
 
   function handleLogout() {
@@ -45,12 +36,45 @@ export default function useAuth() {
     window.location.reload(true);
   }
 
+  async function handleProfile() {
+    return await api.get("/personal/profile").then((response) => {
+      return response.data;
+    });
+  }
+
+  async function handleLocation() {
+    return await api.get("/personal/location").then((response) => {
+      return response.data;
+    });
+  }
+
+  async function handleLanguage() {
+    return await api.get("/personal/languages").then((response) => {
+      return response.data;
+    });
+  }
+
+  async function handlePositionGroups() {
+    return await api.get("/personal/positionGroups").then((response) => {
+      return response.data;
+    });
+  }
+
+  async function handleEducation() {
+    return await api.get("/personal/education").then((response) => {
+      return response.data;
+    });
+  }
+
   return {
     authenticated,
     loading,
     handleLogin,
     handleLogout,
     handleProfile,
-    data,
+    handleLocation,
+    handleLanguage,
+    handlePositionGroups,
+    handleEducation,
   };
 }

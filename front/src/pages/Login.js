@@ -1,12 +1,11 @@
 import React, { useContext, useRef } from "react";
 import { Context } from "../Context/AuthContext";
+import history from "../history";
 
 export default function Login() {
   const email = useRef("");
   const password = useRef("");
-  const { authenticated, handleLogin, handleLogout } = useContext(
-    Context
-  );
+  const { authenticated, handleLogin, handleLogout } = useContext(Context);
 
   return (
     <div className="container p-3">
@@ -33,7 +32,10 @@ export default function Login() {
               className="btn btn-primary"
               type="button"
               onClick={() => {
-                handleLogin(email.current, password.current);
+                handleLogin(email.current, password.current).then(() => {
+                  history.push("/home");
+                  window.location.reload(true);
+                });
               }}
             >
               Enter
