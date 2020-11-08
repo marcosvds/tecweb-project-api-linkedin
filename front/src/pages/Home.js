@@ -117,7 +117,6 @@ export default function Home() {
             position groups
           </button>
         </div>
-
         <div className="p-3">
           <label className="mr-4">
             To acess your your skills:
@@ -134,7 +133,6 @@ export default function Home() {
             SKILLS
           </button>
         </div>
-
       </div>
     </div>
   );
