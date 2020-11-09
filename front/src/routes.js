@@ -10,6 +10,8 @@ import Language from "./pages/Language";
 import PositionGroups from "./pages/PositionGroups";
 import Skills from "./pages/Skills";
 import Education from "./pages/Education";
+import Initial from "./pages/Initial";
+import Register from "./pages/Register";
 
 function CustomRoute({ isPrivate, ...rest }) {
   const { authenticated, loading } = useContext(Context);
@@ -23,7 +25,9 @@ function CustomRoute({ isPrivate, ...rest }) {
 export default function Routes() {
   return (
     <Switch>
+      <CustomRoute exact path="/" component={Initial} />
       <CustomRoute exact path="/login" component={Login} />
+      <CustomRoute exact path="/register" component={Register} />
       <CustomRoute exact path="/home" component={Home} isPrivate />
       <CustomRoute exact path="/personal/profile" component={Profile} />
       <CustomRoute exact path="/personal/location" component={Location} />
