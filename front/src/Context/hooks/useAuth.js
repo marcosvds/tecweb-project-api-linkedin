@@ -97,10 +97,10 @@ export default function useAuth() {
   }
 
   async function handleCompany(linkedin) {
-    return await api.get("/company", { linkedin }).then((response) => {
-      console.log(response.data);
-      return response.data;
-    });
+    console.log("linkedin:", linkedin);
+    const data = await api.get("/company", { linkedin });
+
+    console.log("comapn", data);
   }
 
   return {
