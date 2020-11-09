@@ -85,8 +85,20 @@ export default function useAuth() {
     });
   }
 
-  async function handleCompany() {
-    return await api.get("/company").then((response) => {
+  async function handleRefresh() {
+    await api.post("/personal/refresh");
+    window.location.reload(true);
+  }
+
+  async function handleTreasuryMedia() {
+    return await api.get("/personal/treasuryMedia").then((response) => {
+      return response.data;
+    });
+  }
+
+  async function handleCompany(linkedin) {
+    return await api.get("/company", { linkedin }).then((response) => {
+      console.log(response.data);
       return response.data;
     });
   }
@@ -103,6 +115,8 @@ export default function useAuth() {
     handlePositionGroups,
     handleEducation,
     handleSkills,
+    handleRefresh,
+    handleTreasuryMedia,
     handleCompany,
   };
 }

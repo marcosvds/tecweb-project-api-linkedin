@@ -12,6 +12,7 @@ import Skills from "./pages/Skills";
 import Education from "./pages/Education";
 import Initial from "./pages/Initial";
 import Register from "./pages/Register";
+import TreasuryMedia from "./pages/TreasuryMedia";
 import Company from "./pages/Company";
 
 function CustomRoute({ isPrivate, ...rest }) {
@@ -40,6 +41,11 @@ export default function Routes() {
       />
       <CustomRoute exact path="/personal/skills" component={Skills} />
       <CustomRoute exact path="/personal/education" component={Education} />
+      <CustomRoute
+        exact
+        path="/personal/treasurymedia"
+        component={TreasuryMedia}
+      />
       <CustomRoute exact path="/company" component={Company} />
     </Switch>
   );
