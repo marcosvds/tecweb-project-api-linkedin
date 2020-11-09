@@ -4,6 +4,12 @@
 
 ## Projeto 2 - linkedin API backend
 
+## APIs
+
+https://rapidapi.com/nicholasbudiharsa/api/company-profile-scraper-linkedin
+
+https://rapidapi.com/proapis/api/linkedin-public-profiles
+
 ### Objective
 
 The objective of the linkedin API project is to create an API capable of delivering usefull linkedin information to the frontend. In the backend part was used:
