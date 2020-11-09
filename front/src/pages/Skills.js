@@ -13,33 +13,6 @@ export default function Skills() {
     });
   }, []);
 
-  // const data = {
-  //   skills: [
-  //     //skills
-  //     "Projetos",
-  //     "Liderança",
-  //     "Oratória",
-  //     "Gestão de projetos",
-  //     "Tradução técnica",
-  //     "Redação",
-  //     "Web design",
-  //     "Design de logomarca",
-  //     "Design de produtos",
-  //     "Usinagem",
-  //     "CAD/CAM",
-  //     "Desenho técnico",
-  //     "CAD",
-  //     "Pesquisa",
-  //     "Microsoft Excel",
-  //     "Microsoft Office",
-  //     "Microsoft PowerPoint",
-  //     "Microsoft Word",
-  //     "SolidWorks",
-  //     "Python",
-  //   ],
-  //   token: "janipsydapsjdbasy9d6a789sdahsjnas",
-  // };
-
   return (
     <div style={{ fontFamily: "Lato" }}>
       {loading ? (
