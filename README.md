@@ -48,8 +48,8 @@ yarn start
 
 ### Credits
 
-Enrico F. D.
-
-Luiz Felipe L.
-
-Marcos V. S,
+<ul>
+  <li><a href=https://www.linkedin.com/in/enrico-damiani-125527196/>Enrico Francesco Damiani</a></li>
+  <li><a href=https://www.linkedin.com/in/luiz-felipe-lazzaron-682676181/>Luiz Felipe Lazzaron</a></li>
+  <li><a href=https://www.linkedin.com/in/marcosvinis28/>Marcos Vinícius da Silva</a></li>
+</ul>
