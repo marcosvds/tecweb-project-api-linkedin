@@ -6,7 +6,7 @@ import history from "../history";
 export default function Home() {
   const [userData, setUserData] = useState([]);
 
-  const { handleLogout, handleProfile } = useContext(Context);
+  const { handleLogout, handleRefresh } = useContext(Context);
   // const data = {
   //   user: {
   //     _id: "5fa54d7435423d85f08d3983",
@@ -31,9 +31,37 @@ export default function Home() {
   return (
     <div style={{ fontFamily: "Lato" }} className="container p-3">
       <div className="d-flex flex-column">
-        <div>
-          <button onClick={handleLogout} to={"/login"}>
+        <div style={{ display: "flex" }}>
+          <button
+            style={{
+              backgroundColor: "#3b4b5b",
+              letterSpacing: "0.07em",
+              textTransform: "uppercase",
+              border: "none",
+              color: "#ffffff",
+              padding: "0.5rem 2rem",
+              margin: "0.1rem",
+              borderRadius: "2rem",
+            }}
+            onClick={handleLogout}
+            to={"/login"}
+          >
             Logout
+          </button>
+          <button
+            style={{
+              backgroundColor: "#0c0d0c",
+              letterSpacing: "0.07em",
+              textTransform: "uppercase",
+              border: "none",
+              color: "#ffffff",
+              padding: "0.5rem 2rem",
+              margin: "0.1rem",
+              borderRadius: "2rem",
+            }}
+            onClick={handleRefresh}
+          >
+            Atualizar dados
           </button>
         </div>
         <div>
@@ -119,9 +147,7 @@ export default function Home() {
         </div>
 
         <div className="p-3">
-          <label className="mr-4">
-            To acess your your skills:
-          </label>
+          <label className="mr-4">To acess your your skills:</label>
           <button
             style={style.button}
             className="btn btn-primary"
@@ -134,7 +160,6 @@ export default function Home() {
             SKILLS
           </button>
         </div>
-
       </div>
     </div>
   );

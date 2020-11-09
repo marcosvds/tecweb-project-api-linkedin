@@ -85,6 +85,11 @@ export default function useAuth() {
     });
   }
 
+  async function handleRefresh() {
+    await api.post("/personal/refresh");
+    window.location.reload(true);
+  }
+
   return {
     authenticated,
     loading,
@@ -97,5 +102,6 @@ export default function useAuth() {
     handlePositionGroups,
     handleEducation,
     handleSkills,
+    handleRefresh,
   };
 }
