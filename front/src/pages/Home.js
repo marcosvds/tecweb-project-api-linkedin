@@ -118,7 +118,9 @@ export default function Home() {
               borderRadius: "2rem",
               fontSize: "0.8rem",
             }}
-            onClick={handleCompany(linkedInCompany.current)}
+            onClick={() => {
+              handleCompany("microsoft");
+            }}
           >
             Search
           </button>
