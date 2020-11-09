@@ -96,6 +96,13 @@ export default function useAuth() {
     });
   }
 
+  async function handleCompany(linkedin) {
+    return await api.get("/company", { linkedin }).then((response) => {
+      console.log(response.data);
+      return response.data;
+    });
+  }
+
   return {
     authenticated,
     loading,
@@ -110,5 +117,6 @@ export default function useAuth() {
     handleSkills,
     handleRefresh,
     handleTreasuryMedia,
+    handleCompany,
   };
 }

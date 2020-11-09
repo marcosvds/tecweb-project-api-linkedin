@@ -178,7 +178,6 @@ router.post("/refresh", async (req, res) => {
     const skills = resUni.body.data.data.skills;
 
     const linkedinId = user.linkedinId;
-    console.log(linkedinId);
     Data.findOneAndUpdate(
       { linkedinId },
       {

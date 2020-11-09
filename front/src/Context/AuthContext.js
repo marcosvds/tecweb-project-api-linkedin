@@ -19,6 +19,7 @@ function AuthProvider({ children }) {
     handleSkills,
     handleRefresh,
     handleTreasuryMedia,
+    handleCompany,
   } = useAuth();
 
   return (
@@ -37,6 +38,7 @@ function AuthProvider({ children }) {
         handleSkills,
         handleRefresh,
         handleTreasuryMedia,
+        handleCompany,
       }}
     >
       {children}

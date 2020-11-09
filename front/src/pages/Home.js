@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import api from "../api";
 import { Context } from "../Context/AuthContext";
 import history from "../history";
 
 export default function Home() {
   const [userData, setUserData] = useState([]);
+  const linkedInCompany = useRef("");
 
-  const { handleLogout, handleRefresh } = useContext(Context);
+  const { handleLogout, handleRefresh, handleCompany } = useContext(Context);
   // const data = {
   //   user: {
   //     _id: "5fa54d7435423d85f08d3983",
@@ -31,7 +32,7 @@ export default function Home() {
   return (
     <div style={{ fontFamily: "Lato" }} className="container p-3">
       <div className="d-flex flex-column">
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <button
             style={{
               backgroundColor: "#3b4b5b",
@@ -39,9 +40,10 @@ export default function Home() {
               textTransform: "uppercase",
               border: "none",
               color: "#ffffff",
-              padding: "0.5rem 2rem",
-              margin: "0.1rem",
+              padding: "0.5rem 1rem",
+              margin: "0.1rem 0.5rem",
               borderRadius: "2rem",
+              fontSize: "0.8rem",
             }}
             onClick={handleLogout}
             to={"/login"}
@@ -55,25 +57,71 @@ export default function Home() {
               textTransform: "uppercase",
               border: "none",
               color: "#ffffff",
-              padding: "0.5rem 2rem",
-              margin: "0.1rem",
+              padding: "0.5rem 1rem",
+              margin: "0.1rem 0.5rem",
               borderRadius: "2rem",
+              fontSize: "0.8rem",
             }}
             onClick={handleRefresh}
           >
-            Atualizar dados
+            UPTADE MY DATA
           </button>
         </div>
         <div>
           <p
-            style={{ letterSpacing: "0.1em", textTransform: "uppercase" }}
+            style={{
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              fontSize: "1.2rem",
+              fontWeight: "900",
+              padding: "2rem",
+            }}
             className="h4 text-center"
           >
             LinkedIn API
           </p>
         </div>
-        <div>
-          <p className="h3">Hello, friend</p>
+        <label className="mr-4">
+          To look in information at company,{" "}
+          <strong>insert url company of the linkedIn.</strong>
+        </label>
+        <label style={{ color: "#c4c4c4", fontSize: "0.8rem" }}>
+          An example is{" "}
+          <strong>https://www.linkedin.com/company/microsoft/</strong>
+        </label>
+        <div
+          style={{
+            display: "flex",
+            backgroundColor: "#d4d8da",
+            padding: "0.5rem",
+            borderRadius: "0.2rem",
+          }}
+        >
+          <input
+            type="url"
+            className="form-control"
+            onChange={(e) =>
+              (linkedInCompany.current = e.target.value.match(
+                /\/company\/(.*)\//
+              )[1])
+            }
+          />
+          <button
+            style={{
+              backgroundColor: "#c4c4c4",
+              letterSpacing: "0.07em",
+              textTransform: "uppercase",
+              border: "none",
+              color: "#ffffff",
+              padding: "0.5rem 1rem",
+              margin: "0.1rem 0.5rem",
+              borderRadius: "2rem",
+              fontSize: "0.8rem",
+            }}
+            onClick={handleCompany(linkedInCompany.current)}
+          >
+            Search
+          </button>
         </div>
         <div className="p-3">
           <label className="mr-4">
