@@ -12,6 +12,7 @@ import Skills from "./pages/Skills";
 import Education from "./pages/Education";
 import Initial from "./pages/Initial";
 import Register from "./pages/Register";
+import TreasuryMedia from "./pages/TreasuryMedia";
 
 function CustomRoute({ isPrivate, ...rest }) {
   const { authenticated, loading } = useContext(Context);
@@ -39,6 +40,11 @@ export default function Routes() {
       />
       <CustomRoute exact path="/personal/skills" component={Skills} />
       <CustomRoute exact path="/personal/education" component={Education} />
+      <CustomRoute
+        exact
+        path="/personal/treasurymedia"
+        component={TreasuryMedia}
+      />
     </Switch>
   );
 }

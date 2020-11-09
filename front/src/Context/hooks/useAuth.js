@@ -90,6 +90,12 @@ export default function useAuth() {
     window.location.reload(true);
   }
 
+  async function handleTreasuryMedia() {
+    return await api.get("/personal/treasuryMedia").then((response) => {
+      return response.data;
+    });
+  }
+
   return {
     authenticated,
     loading,
@@ -103,5 +109,6 @@ export default function useAuth() {
     handleEducation,
     handleSkills,
     handleRefresh,
+    handleTreasuryMedia,
   };
 }
