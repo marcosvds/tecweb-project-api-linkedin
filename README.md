@@ -15,9 +15,13 @@ https://rapidapi.com/proapis/api/linkedin-public-profiles
 The objective of the linkedin API project is to create an API capable of delivering usefull linkedin information to the frontend. In the backend part was used:
 
 Mongoose
+
 Cors
+
 express
+
 jsonwebtoken
+
 unirest
 
 ### Inspiration
@@ -33,11 +37,13 @@ https://youtu.be/KKTX1l3sZGk
 ### Important files and folders
 
 'node_modules' (node dependencies)
+
 'auth.json' (hash for the password)
 
 ### Start
 
 yarn install
+
 yarn start
 
 ### Credits
