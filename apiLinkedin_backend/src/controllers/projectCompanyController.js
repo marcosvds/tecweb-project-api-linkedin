@@ -9,11 +9,9 @@ router.use(authMiddleware);
 
 router.get("/", async (req, res) => {
   const { linkedin } = req.body;
-  console.log(linkedin);
-
   try {
     if (await DataCompany.findOne({ linkedin }))
-      res.send({ data: await DataCompany.findOne({ linkedin }) });
+      return res.send({ data: await DataCompany.findOne({ linkedin }) });
 
     var reqApi = unirest(
       "POST",
@@ -22,7 +20,7 @@ router.get("/", async (req, res) => {
 
     reqApi.headers({
       "content-type": "application/json",
-      "x-rapidapi-key": "8085288af8msh2c14499e1cabd8ep1157f6jsn9d120e529dc6",
+      "x-rapidapi-key": "66e68f050dmsh07ae5eb46115fd2p14b295jsn6042d8530440",
       "x-rapidapi-host": "company-profile-scraper-linkedin.p.rapidapi.com",
       useQueryString: true,
     });
@@ -35,12 +33,10 @@ router.get("/", async (req, res) => {
     });
 
     reqApi.end(async function (resApi) {
-      console.log(resApi.body);
-      if (await resApi.error) res.send({ error: "Api Error" });
+      if (await resApi.error) return res.send({ error: "Api Error" });
 
       if (!DataCompany.findOne({ linkedin }))
         await DataCompany.create({ linkedin });
-      console.log(resApi.body.company_linkedin);
 
       try {
         address =
@@ -100,7 +96,7 @@ router.get("/", async (req, res) => {
         tagline = resApi.body.company_linkedin.númerodetelefone;
       } catch {}
 
-      DataCompany.findOneAndUpdate(
+      await DataCompany.findOneAndUpdate(
         { linkedin },
         {
           address,
@@ -115,32 +111,26 @@ router.get("/", async (req, res) => {
           phone,
           tagline,
         },
-        { upsert: true },
-        function (err, doc) {
-          if (err) return res.send(500, { error: "api error" });
-          return res.send({
-            linkedin,
-            address,
-            companySize,
-            companyName,
-            description,
-            employeesOnLinkedin,
-            followers,
-            founded,
-            headquarters,
-            industry,
-            phone,
-            tagline,
-          });
-        }
+        { upsert: true }
       );
 
-      res.send({
-        data: resApi.body.company_linkedin,
+      return res.send({
+        linkedin,
+        address,
+        companySize,
+        companyName,
+        description,
+        employeesOnLinkedin,
+        followers,
+        founded,
+        headquarters,
+        industry,
+        phone,
+        tagline,
       });
     });
   } catch (err) {
-    return res.send({ error: err });
+    return res.send({ error: "erro" });
   }
 });
 
