@@ -133,7 +133,7 @@ router.get("/skills", async (req, res) => {
   });
 });
 
-router.get("/refresh", async (req, res) => {
+router.post("/refresh", async (req, res) => {
   const _id = req.userId;
   const user = await User.findOne({ _id });
 
@@ -178,7 +178,6 @@ router.get("/refresh", async (req, res) => {
     const skills = resUni.body.data.data.skills;
 
     const linkedinId = user.linkedinId;
-    console.log(linkedinId);
     Data.findOneAndUpdate(
       { linkedinId },
       {

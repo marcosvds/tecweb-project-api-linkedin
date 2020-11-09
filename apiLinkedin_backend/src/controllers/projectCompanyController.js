@@ -9,11 +9,9 @@ router.use(authMiddleware);
 
 router.get("/", async (req, res) => {
   const { linkedin } = req.body;
-  console.log(linkedin);
-
   try {
     if (await DataCompany.findOne({ linkedin }))
-      res.send({ data: await DataCompany.findOne({ linkedin }) });
+      return res.send({ data: await DataCompany.findOne({ linkedin }) });
 
     var reqApi = unirest(
       "POST",
@@ -22,7 +20,7 @@ router.get("/", async (req, res) => {
 
     reqApi.headers({
       "content-type": "application/json",
-      "x-rapidapi-key": "8085288af8msh2c14499e1cabd8ep1157f6jsn9d120e529dc6",
+      "x-rapidapi-key": "66e68f050dmsh07ae5eb46115fd2p14b295jsn6042d8530440",
       "x-rapidapi-host": "company-profile-scraper-linkedin.p.rapidapi.com",
       useQueryString: true,
     });
@@ -35,15 +33,14 @@ router.get("/", async (req, res) => {
     });
 
     reqApi.end(async function (resApi) {
-      if (await resApi.error) resApi.status(401).send({ error: "Api Error" });
+      if (await resApi.error) return res.send({ error: "Api Error" });
 
-      if (await !DataCompany.findOne({ linkedin }))
+      if (!DataCompany.findOne({ linkedin }))
         await DataCompany.create({ linkedin });
-      console.log(resApi.body.company_linkedin);
 
       try {
         address =
-          resApi.body.company_linkedin.address == ""
+          resApi.body.company_linkedin.address === ""
             ? resApi.body.company_linkedin.tipo
             : resApi.body.company_linkedin.address;
       } catch {}
@@ -55,58 +52,70 @@ router.get("/", async (req, res) => {
             : resApi.body.company_linkedin.companysize;
       } catch {}
 
-      const { companyName } = resApi.body.company_linkedin.company_name;
-      const { description } = resApi.body.company_linkedin.description;
+      companyName = resApi.body.company_linkedin.company_name;
+      description = resApi.body.company_linkedin.description;
 
       try {
-        if (resApi.body.company_linkedin.employees_on_linkedin === "") {
-          const { employeesOnLinkedin } = resApi.body.company_linkedin.sede;
-        } else {
-          const {
-            employeesOnLinkedin,
-          } = resApi.body.company_linkedin.employees_on_linkedin;
-        }
+        employeesOnLinkedin =
+          resApi.body.company_linkedin.employees_on_linkedin === ""
+            ? resApi.body.company_linkedin.sede
+            : resApi.body.company_linkedin.employees_on_linkedin;
       } catch {}
 
-      const { followers } = resApi.body.company_linkedin.follower;
+      followers = resApi.body.company_linkedin.follower;
 
       try {
-        if (resApi.body.company_linkedin.founded === "") {
-          const { founded } = resApi.body.company_linkedin.especializações;
-        } else {
-          const { founded } = resApi.body.company_linkedin.founded;
-        }
+        founded =
+          resApi.body.company_linkedin.founded === ""
+            ? resApi.body.company_linkedin.especializações
+            : resApi.body.company_linkedin.founded;
       } catch {}
 
       try {
-        if (resApi.body.company_linkedin.headquarters === "") {
-          const { headquarters } = resApi.body.company_linkedin.tipo;
-        } else {
-          const { headquarters } = resApi.body.company_linkedin.headquarters;
-        }
+        headquarters =
+          resApi.body.company_linkedin.headquarters === ""
+            ? resApi.body.company_linkedin.tipo
+            : resApi.body.company_linkedin.headquarters;
       } catch {}
 
       try {
-        if (resApi.body.company_linkedin.industry === "") {
-          const { industry } = resApi.body.company_linkedin.setor;
-        } else {
-          const { industry } = resApi.body.company_linkedin.industry;
-        }
+        industry =
+          resApi.body.company_linkedin.industry === ""
+            ? resApi.body.company_linkedin.setor
+            : resApi.body.company_linkedin.industry;
       } catch {}
 
       try {
-        if (resApi.body.company_linkedin.phone === "") {
-          const { phone } = resApi.body.company_linkedin.númerodetelefone;
-        } else {
-          const { phone } = resApi.body.company_linkedin.phone;
-        }
+        phone =
+          resApi.body.company_linkedin.phone === ""
+            ? resApi.body.company_linkedin.númerodetelefone
+            : resApi.body.company_linkedin.phone;
       } catch {}
 
       try {
-        const { tagline } = resApi.body.company_linkedin.númerodetelefone;
+        tagline = resApi.body.company_linkedin.númerodetelefone;
       } catch {}
 
-      await DataCompany.updateMany({
+      await DataCompany.findOneAndUpdate(
+        { linkedin },
+        {
+          address,
+          companySize,
+          companyName,
+          description,
+          employeesOnLinkedin,
+          followers,
+          founded,
+          headquarters,
+          industry,
+          phone,
+          tagline,
+        },
+        { upsert: true }
+      );
+
+      return res.send({
+        linkedin,
         address,
         companySize,
         companyName,
@@ -119,13 +128,9 @@ router.get("/", async (req, res) => {
         phone,
         tagline,
       });
-
-      res.send({
-        data: resApi.body.company_linkedin,
-      });
     });
   } catch (err) {
-    return res.send({ error: err });
+    return res.send({ error: "erro" });
   }
 });
 
