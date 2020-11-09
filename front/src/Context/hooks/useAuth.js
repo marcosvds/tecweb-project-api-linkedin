@@ -85,6 +85,12 @@ export default function useAuth() {
     });
   }
 
+  async function handleCompany() {
+    return await api.get("/company").then((response) => {
+      return response.data;
+    });
+  }
+
   return {
     authenticated,
     loading,
@@ -97,5 +103,6 @@ export default function useAuth() {
     handlePositionGroups,
     handleEducation,
     handleSkills,
+    handleCompany,
   };
 }
