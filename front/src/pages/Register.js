@@ -6,7 +6,7 @@ export default function Register() {
   const email = useRef("");
   const password = useRef("");
   const name = useRef("");
-  const linkedIn = useRef("");
+  const linkedinId = useRef("");
   const passwordRepeated = useRef("");
   const { authenticated, handleRegister } = useContext(Context);
 
@@ -48,12 +48,12 @@ export default function Register() {
                 required
               />
 
-              <label>URL do LinkedIn</label>
+              <label>URL do linkedin</label>
               <input
                 type="url"
                 className="form-control"
                 onChange={(e) => {
-                  linkedIn.current = e.target.value.match(/\/in\/(.*)\//)[1];
+                  linkedinId.current = e.target.value.match(/\/in\/(.*)\//)[1];
                 }}
                 required
               />
@@ -73,8 +73,13 @@ export default function Register() {
                 }}
                 type="button"
                 onClick={() => {
-                  handleRegister(email.current, password.current).then(() => {
-                    history.push("/home");
+                  handleRegister(
+                    email.current,
+                    password.current,
+                    name.current,
+                    linkedinId.current
+                  ).then(() => {
+                    history.push("/login");
                     window.location.reload(true);
                   });
                 }}

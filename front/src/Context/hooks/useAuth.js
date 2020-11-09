@@ -28,6 +28,19 @@ export default function useAuth() {
     setAuthenticated(true);
   }
 
+  async function handleRegister(email, password, name, linkedinId) {
+    const { data } = await api.post("auth/register", {
+      email,
+      password,
+      name,
+      linkedinId,
+    });
+    api.defaults.headers.Authorization = `Bearer ${data.token}`;
+
+    localStorage.setItem("token", data.token);
+    setAuthenticated(true);
+  }
+
   function handleLogout() {
     setAuthenticated(false);
     localStorage.removeItem("token");
@@ -76,6 +89,7 @@ export default function useAuth() {
     authenticated,
     loading,
     handleLogin,
+    handleRegister,
     handleLogout,
     handleProfile,
     handleLocation,
