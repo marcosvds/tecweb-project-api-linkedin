@@ -35,15 +35,16 @@ router.get("/", async (req, res) => {
     });
 
     reqApi.end(async function (resApi) {
-      if (await resApi.error) resApi.status(401).send({ error: "Api Error" });
+      console.log(resApi.body);
+      if (await resApi.error) res.send({ error: "Api Error" });
 
-      if (await !DataCompany.findOne({ linkedin }))
+      if (!DataCompany.findOne({ linkedin }))
         await DataCompany.create({ linkedin });
       console.log(resApi.body.company_linkedin);
 
       try {
         address =
-          resApi.body.company_linkedin.address == ""
+          resApi.body.company_linkedin.address === ""
             ? resApi.body.company_linkedin.tipo
             : resApi.body.company_linkedin.address;
       } catch {}
@@ -55,70 +56,84 @@ router.get("/", async (req, res) => {
             : resApi.body.company_linkedin.companysize;
       } catch {}
 
-      const { companyName } = resApi.body.company_linkedin.company_name;
-      const { description } = resApi.body.company_linkedin.description;
+      companyName = resApi.body.company_linkedin.company_name;
+      description = resApi.body.company_linkedin.description;
 
       try {
-        if (resApi.body.company_linkedin.employees_on_linkedin === "") {
-          const { employeesOnLinkedin } = resApi.body.company_linkedin.sede;
-        } else {
-          const {
+        employeesOnLinkedin =
+          resApi.body.company_linkedin.employees_on_linkedin === ""
+            ? resApi.body.company_linkedin.sede
+            : resApi.body.company_linkedin.employees_on_linkedin;
+      } catch {}
+
+      followers = resApi.body.company_linkedin.follower;
+
+      try {
+        founded =
+          resApi.body.company_linkedin.founded === ""
+            ? resApi.body.company_linkedin.especializações
+            : resApi.body.company_linkedin.founded;
+      } catch {}
+
+      try {
+        headquarters =
+          resApi.body.company_linkedin.headquarters === ""
+            ? resApi.body.company_linkedin.tipo
+            : resApi.body.company_linkedin.headquarters;
+      } catch {}
+
+      try {
+        industry =
+          resApi.body.company_linkedin.industry === ""
+            ? resApi.body.company_linkedin.setor
+            : resApi.body.company_linkedin.industry;
+      } catch {}
+
+      try {
+        phone =
+          resApi.body.company_linkedin.phone === ""
+            ? resApi.body.company_linkedin.númerodetelefone
+            : resApi.body.company_linkedin.phone;
+      } catch {}
+
+      try {
+        tagline = resApi.body.company_linkedin.númerodetelefone;
+      } catch {}
+
+      DataCompany.findOneAndUpdate(
+        { linkedin },
+        {
+          address,
+          companySize,
+          companyName,
+          description,
+          employeesOnLinkedin,
+          followers,
+          founded,
+          headquarters,
+          industry,
+          phone,
+          tagline,
+        },
+        { upsert: true },
+        function (err, doc) {
+          if (err) return res.send(500, { error: "api error" });
+          return res.send({
+            linkedin,
+            address,
+            companySize,
+            companyName,
+            description,
             employeesOnLinkedin,
-          } = resApi.body.company_linkedin.employees_on_linkedin;
+            followers,
+            founded,
+            headquarters,
+            industry,
+            phone,
+            tagline,
+          });
         }
-      } catch {}
-
-      const { followers } = resApi.body.company_linkedin.follower;
-
-      try {
-        if (resApi.body.company_linkedin.founded === "") {
-          const { founded } = resApi.body.company_linkedin.especializações;
-        } else {
-          const { founded } = resApi.body.company_linkedin.founded;
-        }
-      } catch {}
-
-      try {
-        if (resApi.body.company_linkedin.headquarters === "") {
-          const { headquarters } = resApi.body.company_linkedin.tipo;
-        } else {
-          const { headquarters } = resApi.body.company_linkedin.headquarters;
-        }
-      } catch {}
-
-      try {
-        if (resApi.body.company_linkedin.industry === "") {
-          const { industry } = resApi.body.company_linkedin.setor;
-        } else {
-          const { industry } = resApi.body.company_linkedin.industry;
-        }
-      } catch {}
-
-      try {
-        if (resApi.body.company_linkedin.phone === "") {
-          const { phone } = resApi.body.company_linkedin.númerodetelefone;
-        } else {
-          const { phone } = resApi.body.company_linkedin.phone;
-        }
-      } catch {}
-
-      try {
-        const { tagline } = resApi.body.company_linkedin.númerodetelefone;
-      } catch {}
-
-      await DataCompany.updateMany({
-        address,
-        companySize,
-        companyName,
-        description,
-        employeesOnLinkedin,
-        followers,
-        founded,
-        headquarters,
-        industry,
-        phone,
-        tagline,
-      });
+      );
 
       res.send({
         data: resApi.body.company_linkedin,
