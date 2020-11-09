@@ -1,26 +1,43 @@
-# P2_TecnologiasWeb_2020.2
+# Insper
 
-<h2>Informações Gerais</h2>
+## Tecnologias Web - 2020.2
 
-<h3>Engenharia de Computação Insper - Tecnologias Web 2020.2</h3>
+## Projeto 2 - linkedin API backend
 
-<h3>Alunos:</h3>
-<ul>
-  <li><a href=https://www.linkedin.com/in/enrico-damiani-125527196/>Enrico Francesco Damiani</a></li>
-  <li><a href=https://www.linkedin.com/in/luiz-felipe-lazzaron-682676181/>Luiz Felipe Lazzaron</a></li>
-  <li><a href=https://www.linkedin.com/in/marcosvinis28/>Marcos Vinícius da Silva</a></li>
-</ul>
+### Objective
 
-<h3>Professora:</h3> 
-<ul>
-  <li><a href=https://www.linkedin.com/in/camilaachutti/?originalSubdomain=br>Camila Fernandez Achutti</a></li>
-</ul>
+The objective of the linkedin API project is to create an API capable of delivering usefull linkedin information to the frontend. In the backend part was used:
 
-<h2>Informações da Atividade</h2>
+Mongoose
+Cors
+express
+jsonwebtoken
+unirest
 
-<h3>Vídeos de Comprovação:</h3>
+### Inspiration
 
-<ul>
-</li>
-  <li><a href= x >Testando aplicações</a></li>
-</ul>
+The code was based on the handouts that were given at the tecnologias web class at Insper. Another source of inspiration are the following youtube videos:
+
+https://youtu.be/-j7vLmBMsEU
+
+https://youtu.be/BN_8bCfVp88
+
+https://youtu.be/KKTX1l3sZGk
+
+### Important files and folders
+
+'node_modules' (node dependencies)
+'auth.json' (hash for the password)
+
+### Start
+
+yarn install
+yarn start
+
+### Credits
+
+Enrico F. D.
+
+Luiz Felipe L.
+
+Marcos V. S,
