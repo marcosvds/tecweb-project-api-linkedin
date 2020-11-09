@@ -133,6 +133,22 @@ export default function Home() {
             SKILLS
           </button>
         </div>
+        <div className="p-3">
+          <label className="mr-4">
+            To acess your educational experiences:
+          </label>
+          <button
+            style={style.button}
+            className="btn btn-primary"
+            type="button"
+            onClick={() => {
+              history.push("/personal/education");
+              window.location.reload(true);
+            }}
+          >
+            EDUCATION
+          </button>
+        </div>
       </div>
     </div>
   );
