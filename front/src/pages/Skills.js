@@ -1,18 +1,44 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../Context/AuthContext";
+export default function Skills() {
+  const { handleSkills } = useContext(Context);
 
-export default function Location() {
-  const { handleLocation } = useContext(Context);
   const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(async () => {
-    return await handleLocation().then((response) => {
-      console.log("response", response);
+    return await handleSkills().then((response) => {
       setData(response);
       setLoading(false);
     });
   }, []);
+
+  // const data = {
+  //   skills: [
+  //     //skills
+  //     "Projetos",
+  //     "Liderança",
+  //     "Oratória",
+  //     "Gestão de projetos",
+  //     "Tradução técnica",
+  //     "Redação",
+  //     "Web design",
+  //     "Design de logomarca",
+  //     "Design de produtos",
+  //     "Usinagem",
+  //     "CAD/CAM",
+  //     "Desenho técnico",
+  //     "CAD",
+  //     "Pesquisa",
+  //     "Microsoft Excel",
+  //     "Microsoft Office",
+  //     "Microsoft PowerPoint",
+  //     "Microsoft Word",
+  //     "SolidWorks",
+  //     "Python",
+  //   ],
+  //   token: "janipsydapsjdbasy9d6a789sdahsjnas",
+  // };
 
   return (
     <div style={{ fontFamily: "Lato" }}>
@@ -36,7 +62,7 @@ export default function Location() {
                   style={{ letterSpacing: "0.1em", textTransform: "uppercase" }}
                   className="h4 text-center"
                 >
-                  Location
+                  Skills
                 </p>
               </div>
             </div>
@@ -44,7 +70,7 @@ export default function Location() {
           <div
             style={{
               backgroundColor: "#f1f1f1",
-              borderRadius: "0px 20px 20px 20px",
+              borderRadius: "0px 20px 20px 0px",
               marginTop: "2rem",
             }}
             className="container p-3"
@@ -52,18 +78,16 @@ export default function Location() {
             <div className="d-flex flex-column">
               <div className="p-2 d-flex flex-row justify-content-center">
                 <div>
-                  <strong className="pr-4">País</strong>
+                  <strong className="pr-4">Abilitys</strong>
                 </div>
                 <div>
-                  <span>{data.location.country}</span>
-                </div>
-              </div>
-              <div className="p-2 d-flex flex-row justify-content-center">
-                <div>
-                  <strong className="pr-4">Cidade/Estado</strong>
-                </div>
-                <div>
-                  <span>{data.location.short}</span>
+                  {data.skills?.map((item, key) => {
+                    return (
+                      <div key={key}>
+                        <p>{item}</p>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
