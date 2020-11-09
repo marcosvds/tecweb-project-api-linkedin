@@ -18,16 +18,19 @@ router.post("/register", async (req, res) => {
   const { email } = req.body;
   const { linkedinId } = req.body;
 
+  console.log(linkedinId);
+
   try {
     if (await User.findOne({ email }))
       return res.status(400).send({ error: "User is already registered" });
 
+    if (await Data.findOne({ linkedinId }))
+      return res.status(400).send({ error: "linkedin is already registered" });
+
     const user = await User.create(req.body);
-    const data = await Data.create({ linkedinId });
+    await Data.create(req.body);
 
-    user.password = undefined;
-
-    return res.send({ user, data, token: generateToken({ id: user.id }) });
+    return res.send({ token: generateToken({ id: user.id }) });
   } catch (err) {
     return res.status(400).send({ error: "Registration failed" });
   }
@@ -85,33 +88,39 @@ router.post("/authenticate", async (req, res) => {
     const volunteerExperiences = resUni.body.data.data.volunteer_experiences;
     const skills = resUni.body.data.data.skills;
 
-    await Data.updateMany({
-      firstName,
-      lastName,
-      birthDate,
-      profilePicture,
-      summary,
-      location,
-      premium,
-      influencer,
-      treasuryMedia,
-      languages,
-      industry,
-      education,
-      patents,
-      certifications,
-      projects,
-      publications,
-      courses,
-      testScores,
-      positionGroups,
-      volunteerExperiences,
-      skills,
-    });
-
-    res.send({
-      token: generateToken({ id: user.id }),
-    });
+    const linkedinId = user.linkedinId;
+    console.log(linkedinId);
+    Data.findOneAndUpdate(
+      { linkedinId },
+      {
+        firstName,
+        lastName,
+        birthDate,
+        profilePicture,
+        summary,
+        location,
+        premium,
+        influencer,
+        treasuryMedia,
+        languages,
+        industry,
+        education,
+        patents,
+        certifications,
+        projects,
+        publications,
+        courses,
+        testScores,
+        positionGroups,
+        volunteerExperiences,
+        skills,
+      },
+      { upsert: true },
+      function (err, doc) {
+        if (err) return res.send(500, { error: err });
+        return res.send({ token: generateToken({ id: user.id }) });
+      }
+    );
   });
 });
 
