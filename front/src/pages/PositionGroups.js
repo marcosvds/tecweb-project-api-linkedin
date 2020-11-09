@@ -175,6 +175,7 @@ export default function PositionGroups() {
                         <img
                           style={{
                             width: "100px",
+                            height: "100px",
                             borderRadius: "100px",
                             border: "2px solid #c4c4c4",
                           }}
@@ -191,7 +192,7 @@ export default function PositionGroups() {
                           <p
                             style={{
                               fontWeight: "600",
-                              fontSize: "1.1rem",
+                              fontSize: "1rem",
                               letterSpacing: "0.1em",
                               textTransform: "uppercase",
                             }}
@@ -232,11 +233,11 @@ export default function PositionGroups() {
                             }}
                           >
                             <span>
-                              Start: {item.date.start.month}/
-                              {item.date.start.year}
+                              Start: {item.date?.start.month}/
+                              {item.date?.start.year}
                             </span>
                           </div>
-                          {item.date.end && (
+                          {item.date?.end && (
                             <div
                               style={{
                                 backgroundColor: "#c4c4c4",
@@ -248,7 +249,8 @@ export default function PositionGroups() {
                               }}
                             >
                               <span>
-                                End: {item.date.end.month}/{item.date.end.year}
+                                End: {item.date?.end.month}/
+                                {item.date?.end.year}
                               </span>
                             </div>
                           )}

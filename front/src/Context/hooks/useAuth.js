@@ -14,7 +14,7 @@ export default function useAuth() {
     }
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
 
   async function handleLogin(email, password) {
@@ -66,6 +66,12 @@ export default function useAuth() {
     });
   }
 
+  async function handleSkills() {
+    return await api.get("/personal/skills").then((response) => {
+      return response.data;
+    });
+  }
+
   return {
     authenticated,
     loading,
@@ -76,5 +82,6 @@ export default function useAuth() {
     handleLanguage,
     handlePositionGroups,
     handleEducation,
+    handleSkills,
   };
 }
